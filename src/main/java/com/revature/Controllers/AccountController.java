@@ -22,13 +22,24 @@ public class AccountController {
         List<Account> accounts = getAllAccountsByUserID(loggedInUser.getUser_id());
 
         if(accounts.isEmpty()){
-            System.out.println("This user has no bank accounts.");
+            System.out.println("\nThis user has no bank accounts.");
             return;
         }
 
+        // Empty print for spacing to make it look nice :-)
+        System.out.println();
+
+        int i = 1;
         for(Account a : accounts){
-            ghjgjh
+            if(a.getAccount_nickname() == null){
+                System.out.println(i + ": " + a.getAccount_type() + " account #" + a.getAccount_id() + " has the balance of: $" + a.getAccount_balance());
+
+            }
+            else {
+                System.out.println(i + ": " + a.getAccount_type() + " account #" + a.getAccount_id() + " '" + a.getAccount_nickname() + "'" + " has the balance of: $" + a.getAccount_balance());
+
+            }
+            i++;
         }
     }
-
 }
