@@ -87,7 +87,7 @@ public class UserController {
     private void registerNewUser(){
         User newUser;
         do{
-            System.out.println("\nEnter your new user credentials:");
+            System.out.println("\nEnter your new user credentials.");
             newUser = userService.validateNewCredentials(promptUserForCredentials());
 
             if(newUser == null){

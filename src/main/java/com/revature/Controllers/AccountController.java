@@ -31,6 +31,7 @@ public class AccountController {
                 return;
             }
 
+            System.out.print("\n" + loggedInUser.getUsername() + "'s banking accounts:");
             printAccounts(accounts);
 
             System.out.print("\nEnter the number for the account you would like to work with.\nOr type 'exit' to return to menu\n?: ");
@@ -202,7 +203,7 @@ public class AccountController {
             float userIn = Float.parseFloat(scanner.nextLine());
             int result = accountService.attemptDeposit(account, userIn);
             if(result == 1){
-                System.out.println("\n$" + userIn + " successfully withdrawn from account #" + account.getAccount_id());
+                System.out.println("\n$" + userIn + " successfully deposited into account #" + account.getAccount_id());
             }
         } catch (NumberFormatException e){
             System.out.println("Bad input");
