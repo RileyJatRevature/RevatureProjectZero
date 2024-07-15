@@ -23,7 +23,8 @@ public class UserController {
     }
 
     public void promptUserForLoginService(Map<String, String> controlMap){
-        System.out.print("\nWhat would you like to do?\n1. Register an account.\n2. Login.\nq. Quit.\n?: ");
+
+        System.out.print("\nWelcome to the Revature Banking App login!\nWhat would you like to do?\n1. Register an account.\n2. Login.\nq. Quit.\n?: ");
 
         String userAction = scanner.nextLine();
         switch (userAction.strip().toLowerCase()){
@@ -56,7 +57,7 @@ public class UserController {
             case "1":
             case "c":
             case "create":
-
+                accountController.openANewAccount(loggedInUser);
                 break;
             case "2":
             case "v":

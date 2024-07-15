@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.stream.Stream;
 
 public class DatabaseScriptRunner {
-
     public static void main(String[] args) {
         Path sqlPath = Paths.get("src/main/resources/Bank-setup-reset-script.sql");
         try{
@@ -40,5 +39,4 @@ public class DatabaseScriptRunner {
             System.out.println(e.getMessage());
         }
     }
-
 }

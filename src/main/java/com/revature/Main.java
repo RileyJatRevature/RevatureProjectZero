@@ -5,8 +5,7 @@ package com.revature;
 
 import com.revature.Controllers.AccountController;
 import com.revature.Controllers.UserController;
-import com.revature.Model.User;
-import com.revature.Repository.SqLiteAccountDAO;
+import com.revature.Repository.SQLiteAccountDAO;
 import com.revature.Repository.SqliteUserDao;
 import com.revature.Repository.UserDao;
 import com.revature.Services.AccountService;
@@ -23,20 +22,16 @@ public class Main {
 
         try (Scanner scanner = new Scanner(System.in)) {
 
-            SqLiteAccountDAO accountDAO = new SqLiteAccountDAO();
+            SQLiteAccountDAO accountDAO = new SQLiteAccountDAO();
             AccountService accountService = new AccountService(accountDAO);
-            AccountController accountController = new AccountController(accountService);
+            AccountController accountController = new AccountController(accountService, scanner);
 
             UserDao userDao = new SqliteUserDao();
             UserService userService = new UserService(userDao);
             UserController userController = new UserController(scanner, userService, accountController);
 
             while (Boolean.parseBoolean(controlMap.get("Program Looping"))) {
-                if (controlMap.containsKey("viewingAccount")) {
-                    // prompt for viewing individual banking account
-                    // Deposit, withdraw, close,
-
-                } else if (userController.isAUserLoggedIn()) {
+                if (userController.isAUserLoggedIn()) {
                     userController.promptUserForBankingServices(controlMap);
                 } else {
                     userController.promptUserForLoginService(controlMap);

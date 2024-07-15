@@ -19,6 +19,8 @@ CREATE table accounts(
 );
 
 INSERT INTO accounts(user_id, account_nickname) VALUES (1, 'testing account');
+INSERT INTO accounts(user_id, account_balance) VALUES (2, 1000000.43);
 INSERT INTO accounts(user_id, account_nickname, account_balance) VALUES (1, 'Admin''s real account don''t delete', 3.50);
 INSERT INTO accounts(user_id, account_balance) VALUES (1, 1000000.43);
-INSERT INTO accounts(user_id, account_balance) VALUES (2, 1000000.43);
+
+
