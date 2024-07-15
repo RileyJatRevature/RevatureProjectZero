@@ -125,7 +125,9 @@ public class AccountController {
             }
 
             // Now put it all together
-            accountService.openAccount(loggedInUser, accountType, accountNickname, initialBal);
+            if(accountService.openAccount(loggedInUser, accountType, accountNickname, initialBal) == 1){
+                System.out.println("New banking account successfully created!");
+            }
 
         } catch (UserSQLException | NumberFormatException e){
             System.out.println("Input not accepted " + e.getMessage());

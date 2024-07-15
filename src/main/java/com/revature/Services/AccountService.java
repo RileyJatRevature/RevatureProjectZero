@@ -3,6 +3,8 @@ package com.revature.Services;
 import com.revature.Model.Account;
 import com.revature.Model.User;
 import com.revature.Repository.SQLiteAccountDAO;
+import com.revature.Repository.SqliteUserDao;
+import com.revature.Repository.UserDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +12,16 @@ import java.util.List;
 public class AccountService {
 
     private final SQLiteAccountDAO accountDAO;
+    private final SqliteUserDao userDao;
 
-    public AccountService(SQLiteAccountDAO accountDAO){
+    public AccountService(SQLiteAccountDAO accountDAO, SqliteUserDao userDao){
         this.accountDAO = accountDAO;
+        this.userDao = userDao;
     }
 
     public List<Account> getAllAccountsByUserID(int userID){
         // Check to ensure this user ID is real
-        if(accountDAO.checkIfUserIDIsValid(userID)){
+        if(userDao.checkIfUserIDIsValid(userID)){
             // If real call DAO method of same name
             return accountDAO.getAllAccountsByUserID(userID);
         }
@@ -29,7 +33,7 @@ public class AccountService {
         // Check to ensure account belongs to user
         if(accountDAO.validateAccountUserPair(user.getUser_id(), account.getAccount_id())){
             // Call DAO method to delete row
-            return accountDAO.closeAccount(user.getUser_id(), account.getAccount_id());
+            return accountDAO.closeAccount(account.getAccount_id());
         }
         return 0;
     }

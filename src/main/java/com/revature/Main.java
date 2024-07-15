@@ -22,11 +22,12 @@ public class Main {
 
         try (Scanner scanner = new Scanner(System.in)) {
 
-            SQLiteAccountDAO accountDAO = new SQLiteAccountDAO();
-            AccountService accountService = new AccountService(accountDAO);
+            SqliteUserDao userDao = new SqliteUserDao();
+
+            SQLiteAccountDAO accountDAO = new SQLiteAccountDAO(userDao);
+            AccountService accountService = new AccountService(accountDAO, userDao);
             AccountController accountController = new AccountController(accountService, scanner);
 
-            UserDao userDao = new SqliteUserDao();
             UserService userService = new UserService(userDao);
             UserController userController = new UserController(scanner, userService, accountController);
 

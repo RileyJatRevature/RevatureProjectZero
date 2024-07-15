@@ -50,6 +50,17 @@ public class SqliteUserDao implements UserDao{
             throw new UserSQLException(e.getMessage());
 
         }
+    }
 
+    public boolean checkIfUserIDIsValid(int userID){
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        try(Connection connection = DatabaseConnector.createConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, userID);
+            return preparedStatement.executeQuery().next();
+
+        } catch (SQLException e){
+            throw new UserSQLException(e.getMessage());
+        }
     }
 }
